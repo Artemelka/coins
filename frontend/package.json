@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "author": "Artemelka <artemelka.ru@gmail.com>",
-  "homepage": "coins.artemelka.ru",
+  "homepage": "/",
   "dependencies": {
     "@artemelka/redux-store-injector": "1.0.3",
     "@reduxjs/toolkit": "1.5.0",
@@ -37,10 +37,9 @@
     "react-app-rewired": "2.2.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test"
   },
   "eslintConfig": {
     "extends": [
