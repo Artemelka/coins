@@ -7,22 +7,23 @@ import { appRouterMiddleware } from '@/app/router';
 import { createReducer } from '../../create-reducer';
 
 const sagaMiddleware = createSagaMiddleware();
+const injectorEnhancerParams = {
+  createReducer,
+  runSaga: sagaMiddleware.run,
+};
 
 const appStore = configureStore({
-  reducer: createReducer(),
-  enhancers: [createInjectorEnhancer({
-    createReducer,
-    runSaga: sagaMiddleware.run,
-  })],
+  enhancers: [
+      createInjectorEnhancer(injectorEnhancerParams),
+  ],
   middleware: [
     appRouterMiddleware,
     sagaMiddleware,
   ],
+  reducer: createReducer(),
 });
 
-type ReduxProviderProps = PropsWithChildren<{}>;
-
-export const ReduxProviderComponent = ({ children }: ReduxProviderProps) => {
+export const ReduxProviderComponent = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <Provider store={appStore}>
       <StoreInjectorProvider store={appStore as AppStore}>

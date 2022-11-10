@@ -1,3 +1,4 @@
+export { Route } from 'react-router';
 export {
   AppRouterProvider,
   AppRouterSwitch,

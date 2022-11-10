@@ -1,7 +1,8 @@
-import React, {memo, useEffect} from 'react';
+import React, { memo, useEffect } from 'react';
 import { ReduxProvider } from './redux';
 import { AppRouterProvider } from './router';
 import { AppLayout } from './app-layout';
+import { PAGES_ROUTES_CONFIG } from '@/pages';
 import { bootstrapApp } from './_utils/bootstrap-app';
 
 export const AppContainer = () => {
@@ -12,7 +13,7 @@ export const AppContainer = () => {
   return (
     <ReduxProvider>
       <AppRouterProvider>
-        <AppLayout />
+        <AppLayout routes={PAGES_ROUTES_CONFIG}/>
       </AppRouterProvider>
     </ReduxProvider>
   );
