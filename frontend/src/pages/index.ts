@@ -1,6 +1,6 @@
 import { AppRouterProps } from '@/app/router';
-import { HOME_PAGE_ROUTE_CONFIG } from './home-page';
+import { REGIONS_PAGE_ROUTE_CONFIG } from './regions-page';
 
 export const PAGES_ROUTES_CONFIG: Array<AppRouterProps> = [
-    HOME_PAGE_ROUTE_CONFIG,
+    REGIONS_PAGE_ROUTE_CONFIG,
 ];

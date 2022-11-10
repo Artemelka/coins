@@ -13,7 +13,7 @@ const ThemeSwitcherComponent: FC<unknown> = (props) => {
     };
 
     return (
-        <div className={styles.root}>
+        <p className={styles.root}>
             <input
                 className={styles.input}
                 id="themeCheckbox"
@@ -27,7 +27,7 @@ const ThemeSwitcherComponent: FC<unknown> = (props) => {
             >
                 Dark theme
             </label>
-        </div>
+        </p>
     );
 }
 
