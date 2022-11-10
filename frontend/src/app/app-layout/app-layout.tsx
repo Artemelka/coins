@@ -8,7 +8,7 @@ type AppLayoutProps = {
 export const AppLayoutComponent = ({ routes }: AppLayoutProps) => {
   return (
     <AppRouterSwitch>
-      {routes.map(props => <Route {...props} />)}
+      {routes.map(props => <Route key={props.path} {...props} />)}
     </AppRouterSwitch>
   );
 };

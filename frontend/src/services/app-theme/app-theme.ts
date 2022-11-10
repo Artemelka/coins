@@ -44,6 +44,6 @@ export class AppTheme implements AppThemeService {
   }
 
   public init() {
-    this.set(this.get());
+    this.change(this.get());
   }
 }
