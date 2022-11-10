@@ -1,20 +1,11 @@
-import React, { FC, memo, useState } from 'react';
-import { appThemeServices } from '@/services/app-theme';
+import React, { FC, memo } from 'react';
+import { ThemeSwitcher } from '@/components';
 import logo from "./logo.svg";
 import styles from './home-page.module.scss';
 
 type IProps = unknown;
 
 const HomePageComponent: FC<IProps> = (props) => {
-    const [checked, setChecked] = useState(appThemeServices.get() === 'dark');
-
-    const handleChange = () => {
-        const nextValue = !checked;
-
-        setChecked(nextValue);
-        appThemeServices.change(nextValue ? 'dark':  'light');
-    };
-
     return (
         <div className={styles.root}>
             <header className={styles.header}>
@@ -31,8 +22,7 @@ const HomePageComponent: FC<IProps> = (props) => {
                     Learn React
                 </a>
                 <p>
-                    <input id="themeCheckbox" type="checkbox" onChange={handleChange} checked={checked}/>
-                    <label htmlFor="themeCheckbox">Dark theme</label>
+                    <ThemeSwitcher/>
                 </p>
             </header>
         </div>
