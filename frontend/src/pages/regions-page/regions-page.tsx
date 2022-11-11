@@ -1,54 +1,69 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AppStore } from '@/app';
-import { ImageBox, ImageBoxClickEvent, Page } from '@/components';
-import { regionsItemsSelector, fetchRegionsSagaAction, Region } from './redux';
-import styles from './regions-page.module.scss';
+import { ImageBoxList, ImageBoxClickEvent, Page } from '@/components';
+import {
+    regionsItemsSelector,
+    activeRegionIdSelector,
+    countrySelector,
+    fetchRegionsSagaAction,
+    fetchCountriesSagaAction,
+    setActiveRegionId,
+    Region,
+    Country,
+} from './redux';
 
 type IStateProps = {
-    regions: Region[];
+    regions: Array<Region>;
+    countries: Array<Country>;
+    activeRegionId: number;
 };
 type IProps = IStateProps & {
+    fetchCountries: () => void;
     fetchRegions: () => void;
+    setActiveRegionId: (id: number) => void;
 };
 
 class RegionsPageComponent extends Component<IProps, unknown> {
     componentDidMount() {
         this.props.fetchRegions();
+        this.props.fetchCountries();
     }
 
-    handleClick = ({ id }: ImageBoxClickEvent) => {
-        console.log('=== id ===', id)
-    }
+    handleRegionClick = ({ id }: ImageBoxClickEvent) => {
+        this.props.setActiveRegionId(id);
+    };
+
+    handleCountryClick = ({ id }: ImageBoxClickEvent) => {
+        console.log('=== id ===', id);
+    };
 
     render() {
+        const{ regions, countries, activeRegionId } = this.props;
+
         return (
             <Page headTitle="Regions">
-                <div className={styles.root}>
-                    <ul className={styles.list}>
-                        {this.props.regions.map(({ id, imageUri, name }) => (
-                            <li key={id} className={styles.item}>
-                                <ImageBox
-                                    id={id}
-                                    imageUri={imageUri}
-                                    onClick={this.handleClick}
-                                    title={name}
-                                />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <ImageBoxList
+                    items={activeRegionId ? countries : regions}
+                    onItemClick={activeRegionId ? this.handleCountryClick : this.handleRegionClick}
+                />
             </Page>
         );
     }
 }
 
-const mapStateToProps = (state: AppStore): IStateProps => ({
-    regions: regionsItemsSelector(state)
-});
+const mapStateToProps = (state: AppStore): IStateProps => {
+    return ({
+        regions: regionsItemsSelector(state),
+        countries: countrySelector(state),
+        activeRegionId: activeRegionIdSelector(state),
+    });
+}
 
 const reduxActions = {
+    fetchCountries: fetchCountriesSagaAction,
     fetchRegions: fetchRegionsSagaAction,
+    setActiveRegionId,
 };
 
 export const RegionsPage = connect(mapStateToProps, reduxActions)(RegionsPageComponent);
