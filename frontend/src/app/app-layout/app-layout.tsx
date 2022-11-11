@@ -1,5 +1,7 @@
 import React, { memo } from 'react';
 import { AppRouterSwitch, Route, AppRouterProps } from '@/app/router';
+import { ThemeSwitcher } from '@/components';
+import styles from './app-layout.module.scss';
 
 type AppLayoutProps = {
   routes: Array<AppRouterProps>;
@@ -7,9 +9,16 @@ type AppLayoutProps = {
 
 export const AppLayoutComponent = ({ routes }: AppLayoutProps) => {
   return (
-    <AppRouterSwitch>
-      {routes.map(props => <Route key={props.path} {...props} />)}
-    </AppRouterSwitch>
+      <div className={styles.root}>
+        <header className={styles.header}>
+            <ThemeSwitcher/>
+        </header>
+        <main className={styles.main}>
+          <AppRouterSwitch>
+            {routes.map(props => <Route key={props.path} {...props} />)}
+          </AppRouterSwitch>
+        </main>
+      </div>
   );
 };
 

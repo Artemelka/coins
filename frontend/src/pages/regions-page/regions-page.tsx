@@ -1,16 +1,10 @@
-import React, {FC, memo, useEffect, useState} from 'react';
+import React, { FC, memo, useCallback, useEffect, useState } from 'react';
 import { ApiRequest } from '@/services/api';
-import { ThemeSwitcher, ImageBox } from '@/components';
+import { ImageBox, Page } from '@/components';
+import { Region } from './redux';
 import styles from './regions-page.module.scss';
 
 type IProps = unknown;
-
-type Region = {
-    active: boolean;
-    id: number;
-    imageUri: string;
-    name: string;
-};
 
 const HomePageComponent: FC<IProps> = (props) => {
     const [regions, setRegions] = useState<Region[]>([]);
@@ -26,18 +20,28 @@ const HomePageComponent: FC<IProps> = (props) => {
         });
     }, []);
 
-    return (
-        <div className={styles.root}>
-            <ul className={styles.list}>
-                {regions.map(({ id, imageUri, name }) => (
-                    <li key={id} className={styles.item}>
-                        <ImageBox imageUri={imageUri} title={name}/>
-                    </li>
-                ))}
-            </ul>
+    const handleClick = useCallback(() => {
 
-            <ThemeSwitcher/>
-        </div>
+    }, []);
+
+    return (
+        <Page headTitle="Regions">
+            <div className={styles.root}>
+                <ul className={styles.list}>
+                    {regions.map(({ id, imageUri, name }) => (
+                        <li key={id} className={styles.item}>
+                            <ImageBox
+                                id={id}
+                                imageUri={imageUri}
+                                onClick={handleClick}
+                                title={name}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </Page>
+
     );
 }
 

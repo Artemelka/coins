@@ -1,0 +1,1 @@
+export const REGIONS_REDUCER_NAME = 'regions';

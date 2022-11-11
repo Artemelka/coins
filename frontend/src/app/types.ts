@@ -3,6 +3,6 @@ import { RouterStore } from '@/app/router';
 
 export type AppStore = RouterStore;
 
-export type BaseAction<P> = Action<string> & {
+export type BaseAction<T, P> = Action<T> & {
   payload: P;
 };

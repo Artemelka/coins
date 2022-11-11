@@ -2,12 +2,14 @@
   --baseBackgroundColor: #282c34;
   --baseTextColor: #fff;
   --primaryColor: #61dafb;
+  --invertBackgroundColor: #fff;
 }
 
 body[theme='light'] {
   --baseBackgroundColor: #fff;
   --baseTextColor: #282c34;
   --primaryColor: #61dafb;
+  --invertBackgroundColor: #282c34;
 }
 
 body {
