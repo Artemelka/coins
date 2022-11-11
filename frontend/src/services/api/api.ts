@@ -23,11 +23,11 @@ export class Api {
 
                 const data = await response.json();
 
-                return {
+                return Promise.resolve({
                     isError: !data,
                     errorMessage: !data ? 'empty data': '',
                     data: data || {},
-                };
+                });
             } catch (error: any) {
                 return Promise.reject({
                     isError: true,
@@ -38,19 +38,19 @@ export class Api {
         };
     }
 
-    public get = <D>(url: string, params?: RequestGetParams): Promise<ApiResponse<D>> => {
+    public get = async <D>(url: string, params?: RequestGetParams): Promise<ApiResponse<D>> => {
         const { queryParams, ...restParams } = params || {};
         const queryString = queryParams ? getQueryString(queryParams) : '';
         const fullUrl = `${url}${queryString}`;
 
-        return this.request(fullUrl, {
+        return await this.request(fullUrl, {
             ...restParams,
             method: METHOD.GET,
         });
     }
 
-    public post = <D>(url: string, { body, ...params }: RequestPostParams): Promise<ApiResponse<D>> => {
-        return this.request(url, {
+    public post = async <D>(url: string, { body, ...params }: RequestPostParams): Promise<ApiResponse<D>> => {
+        return await this.request(url, {
             ...params,
             method: METHOD.POST,
             body: JSON.stringify(body),

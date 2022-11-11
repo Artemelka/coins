@@ -2,33 +2,31 @@ import React, { memo, PropsWithChildren } from 'react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import { StoreInjectorProvider, AppStore, createInjectorEnhancer } from '@artemelka/redux-store-injector';
 import { appRouterMiddleware } from '@/app/router';
-import { createReducer } from '../../create-reducer';
+import { REGIONS_PAGE_SAGAS } from '@/pages';
+import { appReducer } from '../../app-reducer';
 
 const sagaMiddleware = createSagaMiddleware();
-const injectorEnhancerParams = {
-  createReducer,
-  runSaga: sagaMiddleware.run,
-};
 
 const appStore = configureStore({
-  enhancers: [
-      createInjectorEnhancer(injectorEnhancerParams),
-  ],
   middleware: [
     appRouterMiddleware,
     sagaMiddleware,
   ],
-  reducer: createReducer(),
+  reducer: appReducer,
 });
+
+const APP_SAGAS = [
+    ...REGIONS_PAGE_SAGAS,
+];
+
+APP_SAGAS.forEach((saga) => sagaMiddleware.run(saga));
+
 
 export const ReduxProviderComponent = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <Provider store={appStore}>
-      <StoreInjectorProvider store={appStore as AppStore}>
         {children}
-      </StoreInjectorProvider>
     </Provider>
   );
 };

@@ -17,4 +17,8 @@ export const setRegionsLoadingSuccess = (regions: Region[]): RegionsLoadingSucce
     payload: { regions },
 });
 
+export const REGIONS_FETCH_SAGA = 'REGIONS_FETCH_SAGA';
+type RegionsFetch = Action<typeof REGIONS_FETCH_SAGA>;
+export const fetchRegionsSagaAction = (): RegionsFetch => ({ type: REGIONS_FETCH_SAGA });
+
 export type RegionsActions = RegionsLoadingStart | RegionsLoadingStop | RegionsLoadingSuccess;

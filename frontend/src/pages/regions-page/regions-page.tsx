@@ -1,27 +1,21 @@
-import React, { FC, memo, useCallback, useEffect, useState } from 'react';
-import { ApiRequest } from '@/services/api';
+import React, { FC, memo, useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { ImageBox, Page } from '@/components';
-import { Region } from './redux';
+import { regionsItemsSelector, fetchRegionsSagaAction } from './redux';
 import styles from './regions-page.module.scss';
 
 type IProps = unknown;
 
 const HomePageComponent: FC<IProps> = (props) => {
-    const [regions, setRegions] = useState<Region[]>([]);
+    const regions = useSelector(regionsItemsSelector);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        ApiRequest.get<{ regions: Array<Region>}>('regions.json').then(response => {
-            console.log('=== response ===', response);
-            if (response.isError) {
-                return;
-            }
-
-            setRegions(response.data.regions)
-        });
+        dispatch(fetchRegionsSagaAction());
     }, []);
 
-    const handleClick = useCallback(() => {
-
+    const handleClick = useCallback(({ id }) => {
+        console.log('=== id ===', id)
     }, []);
 
     return (
@@ -41,7 +35,6 @@ const HomePageComponent: FC<IProps> = (props) => {
                 </ul>
             </div>
         </Page>
-
     );
 }
 
