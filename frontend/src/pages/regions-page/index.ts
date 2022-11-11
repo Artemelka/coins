@@ -3,6 +3,7 @@ import { RegionsPage } from './regions-page';
 import { regionsReducer, REGIONS_REDUCER_NAME } from './redux';
 import { fetchRegionsSagaWatcher } from './redux';
 
+export type { RegionsStore } from './redux';
 export const REGIONS_PAGE_ROUTE_CONFIG: AppRouterProps = {
     component: RegionsPage,
     exact: true,

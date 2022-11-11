@@ -1,10 +1,6 @@
 import React, { FC, memo, SyntheticEvent, useCallback } from 'react';
+import { ImageBoxClickEvent } from './types';
 import styles from './image-box.module.scss';
-
-type ImageBoxClickEvent = {
-    id: number;
-    event: SyntheticEvent;
-};
 
 type IProps = {
     id: number;

@@ -1,41 +1,54 @@
-import React, { FC, memo, useCallback, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { ImageBox, Page } from '@/components';
-import { regionsItemsSelector, fetchRegionsSagaAction } from './redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { AppStore } from '@/app';
+import { ImageBox, ImageBoxClickEvent, Page } from '@/components';
+import { regionsItemsSelector, fetchRegionsSagaAction, Region } from './redux';
 import styles from './regions-page.module.scss';
 
-type IProps = unknown;
+type IStateProps = {
+    regions: Region[];
+};
+type IProps = IStateProps & {
+    fetchRegions: () => void;
+};
 
-const HomePageComponent: FC<IProps> = (props) => {
-    const regions = useSelector(regionsItemsSelector);
-    const dispatch = useDispatch();
+class RegionsPageComponent extends Component<IProps, unknown> {
+    componentDidMount() {
+        this.props.fetchRegions();
+    }
 
-    useEffect(() => {
-        dispatch(fetchRegionsSagaAction());
-    }, []);
-
-    const handleClick = useCallback(({ id }) => {
+    handleClick = ({ id }: ImageBoxClickEvent) => {
         console.log('=== id ===', id)
-    }, []);
+    }
 
-    return (
-        <Page headTitle="Regions">
-            <div className={styles.root}>
-                <ul className={styles.list}>
-                    {regions.map(({ id, imageUri, name }) => (
-                        <li key={id} className={styles.item}>
-                            <ImageBox
-                                id={id}
-                                imageUri={imageUri}
-                                onClick={handleClick}
-                                title={name}
-                            />
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </Page>
-    );
+    render() {
+        return (
+            <Page headTitle="Regions">
+                <div className={styles.root}>
+                    <ul className={styles.list}>
+                        {this.props.regions.map(({ id, imageUri, name }) => (
+                            <li key={id} className={styles.item}>
+                                <ImageBox
+                                    id={id}
+                                    imageUri={imageUri}
+                                    onClick={this.handleClick}
+                                    title={name}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </Page>
+        );
+    }
 }
 
-export const RegionsPage = memo(HomePageComponent);
+const mapStateToProps = (state: AppStore): IStateProps => ({
+    regions: regionsItemsSelector(state)
+});
+
+const reduxActions = {
+    fetchRegions: fetchRegionsSagaAction,
+};
+
+export const RegionsPage = connect(mapStateToProps, reduxActions)(RegionsPageComponent);
