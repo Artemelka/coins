@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useCallback, useState } from 'react';
 import { ImageBox, ImageBoxClickEvent } from './_components';
 import styles from './image-box-list.module.scss'
 
@@ -8,6 +8,12 @@ type IProps = {
 };
 
 const ImageBoxListComponent: FC<IProps> = ({ items, onItemClick }) => {
+    const [imageCount, setImageCount] = useState(0);
+
+    const handleLoad = useCallback(() => {
+        setImageCount(prevCount => prevCount + 1);
+    }, []);
+
     return (
         <ul className={styles.root}>
             {items.map(({ id, imageUri, name }) => (
@@ -16,7 +22,9 @@ const ImageBoxListComponent: FC<IProps> = ({ items, onItemClick }) => {
                         id={id}
                         imageUri={imageUri}
                         onClick={onItemClick}
+                        onImageLoad={handleLoad}
                         title={name}
+                        hideSkeleton={imageCount === items.length}
                     />
                 </li>
             ))}

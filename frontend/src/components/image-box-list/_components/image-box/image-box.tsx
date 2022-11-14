@@ -1,15 +1,25 @@
 import React, { FC, memo, SyntheticEvent, useCallback } from 'react';
+import { LazyImage } from '@/components';
 import { ImageBoxClickEvent } from './types';
 import styles from './image-box.module.scss';
 
 type IProps = {
     id: number;
     imageUri: string;
-    title: string;
     onClick: (clickEvent: ImageBoxClickEvent) => void;
+    onImageLoad?: () => void;
+    title: string;
+    hideSkeleton?: boolean;
 };
 
-const ImageBoxComponent: FC<IProps> = ({ id, imageUri, onClick, title }) => {
+const ImageBoxComponent: FC<IProps> = ({
+    id,
+    imageUri,
+    onClick,
+    title,
+    onImageLoad,
+    hideSkeleton,
+}) => {
     const handleClick = useCallback((event: SyntheticEvent) => {
         onClick({ id, event });
     }, [id, onClick]);
@@ -17,7 +27,13 @@ const ImageBoxComponent: FC<IProps> = ({ id, imageUri, onClick, title }) => {
     return (
         <button className={styles.root} type="button" onClick={handleClick}>
             <div className={styles.wrapper}>
-                <img className={styles.image} src={imageUri} alt={title}/>
+                <LazyImage
+                  src={imageUri}
+                  alt={title}
+                  onLoad={onImageLoad}
+                  remoteControl={Boolean(onImageLoad)}
+                  hideSkeleton={hideSkeleton}
+                />
             </div>
             <p className={styles.title}>{title}</p>
         </button>

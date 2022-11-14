@@ -3,6 +3,13 @@
   --baseTextColor: #fff;
   --primaryColor: #61dafb;
   --invertBackgroundColor: #fff;
+  --skeletonGradient: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0,
+          rgba(255, 255, 255, 0.2) 20%,
+          rgba(255, 255, 255, 0.5) 60%,
+          rgba(255, 255, 255, 0)
+  );
 }
 
 body[theme='light'] {
@@ -10,6 +17,13 @@ body[theme='light'] {
   --baseTextColor: #282c34;
   --primaryColor: #61dafb;
   --invertBackgroundColor: #282c34;
+  --skeletonGradient: linear-gradient(
+          90deg,
+          rgba(40, 44, 52, 0) 0,
+          rgba(40, 44, 52, 0.2) 20%,
+          rgba(40, 44, 52, 0.5) 60%,
+          rgba(40, 44, 52, 0)
+  );
 }
 
 body {
