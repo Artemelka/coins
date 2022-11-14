@@ -8,9 +8,11 @@ type ResponseCountries = Omit<Country, 'imageUri' | 'name'> & {
     countryName: string;
 };
 
+type Response = ApiResponse<{ countries: Array<ResponseCountries> }>;
+
 function* fetchCountriesSagaWorker() {
     try {
-        const response: ApiResponse<{ countries: Array<ResponseCountries>}> = yield call(ApiRequest.get, 'countries.json');
+        const response: Response = yield call(ApiRequest.get, 'countries.json');
 
         if (response.isError) {
             console.log('=== ERROR in fetchCountriesSagaWorker ===', response.errorMessage);

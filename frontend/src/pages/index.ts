@@ -1,11 +1,9 @@
 import { AppRouterProps } from '@/app/router';
-import { REGIONS_PAGE_ROUTE_CONFIG } from './regions-page';
-import { COUNTRIES_PAGE_ROUTE_CONFIG } from './countries-page';
+import { COINS_PAGE_ROUTE_CONFIG } from './coins-page';
 
-export { REGION_REDUCER_CONFIG, REGIONS_PAGE_SAGAS } from './regions-page';
-export type { RegionsStore } from './regions-page';
+export { COINS_REDUCER_CONFIG, COINS_PAGE_SAGAS } from './coins-page';
+export type { CoinsStore } from './coins-page';
 
 export const PAGES_ROUTES_CONFIG: Array<AppRouterProps> = [
-    REGIONS_PAGE_ROUTE_CONFIG,
-    COUNTRIES_PAGE_ROUTE_CONFIG,
+    COINS_PAGE_ROUTE_CONFIG,
 ];

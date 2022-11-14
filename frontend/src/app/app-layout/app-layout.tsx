@@ -14,7 +14,7 @@ export const AppLayoutComponent = ({ routes }: AppLayoutProps) => {
             <ThemeSwitcher/>
         </header>
         <main className={styles.main}>
-          <AppRouterSwitch>
+          <AppRouterSwitch pathToRedirect="/coins">
             {routes.map(props => <Route key={props.path} {...props} />)}
           </AppRouterSwitch>
         </main>

@@ -1,4 +1,4 @@
-import { REGIONS_REDUCER_NAME } from "@/pages/regions-page/redux/constants";
+import { COINS_REDUCER_NAME } from './constants';
 
 export type Region = {
     active: boolean;
@@ -16,11 +16,10 @@ export type Country = {
     regionId: number;
 };
 
-export type RegionsState = {
+export type CoinsState = {
     isLoading: boolean;
-    items: Array<Region>;
+    regions: Array<Region>;
     countries: Array<Country>;
-    activeRegionId: number;
 }
 
-export type RegionsStore = { [REGIONS_REDUCER_NAME]: RegionsState};
+export type CoinsStore = { [COINS_REDUCER_NAME]: CoinsState};

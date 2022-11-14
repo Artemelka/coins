@@ -1,16 +1,20 @@
 import { createSelector } from 'reselect';
-import { RouterState } from 'connected-react-router';
-import { Location } from 'history';
 import { ROUTER_REDUCER_KEY } from './constants';
-import { RouterStore } from './types';
+import { RouterStore, AppRouterState } from './types';
 
-const routerSelector = (state: RouterStore): RouterState => state[ROUTER_REDUCER_KEY];
+const routerSelector = (state: RouterStore): AppRouterState => state[ROUTER_REDUCER_KEY];
 
 export const routerLocationSelector = createSelector(
   routerSelector,
-  (router): Location => router.location
+  (router): AppRouterState['location'] => router.location
 );
+
 export const locationPathNameSelector = createSelector(
   routerLocationSelector,
   (location): string => location.pathname
+);
+
+export const locationQuerySelector = createSelector(
+  routerLocationSelector,
+  (location): Record<string, string> => location.query
 );

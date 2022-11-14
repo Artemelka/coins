@@ -27,13 +27,6 @@ export const COUNTRIES_FETCH_SAGA = 'COUNTRIES_FETCH_SAGA';
 type CountriesFetch = Action<typeof COUNTRIES_FETCH_SAGA>;
 export const fetchCountriesSagaAction = (): CountriesFetch => ({ type: COUNTRIES_FETCH_SAGA });
 
-export const SET_ACTIVE_REGION_ID = 'SET_ACTIVE_REGION_ID';
-type SetActiveRegionId = BaseAction<typeof SET_ACTIVE_REGION_ID, { id: number }>;
-export const setActiveRegionId = (id: number): SetActiveRegionId => ({
-    type: SET_ACTIVE_REGION_ID,
-    payload: { id },
-});
-
 export const COUNTRIES_LOADING_SUCCESS = 'COUNTRIES_LOADING_SUCCESS';
 type CountriesLoadingSuccess = BaseAction<typeof COUNTRIES_LOADING_SUCCESS, { countries: Array<Country> }>;
 export const setCountriesLoadingSuccess = (countries: Array<Country>): CountriesLoadingSuccess => ({
@@ -44,5 +37,4 @@ export const setCountriesLoadingSuccess = (countries: Array<Country>): Countries
 export type RegionsActions = RegionsLoadingStart |
     RegionsLoadingStop |
     RegionsLoadingSuccess |
-    CountriesLoadingSuccess |
-    SetActiveRegionId;
+    CountriesLoadingSuccess;
