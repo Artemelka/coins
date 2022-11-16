@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { PropsWithChildren, memo } from 'react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
@@ -23,7 +23,7 @@ const APP_SAGAS = [
 APP_SAGAS.forEach((saga) => sagaMiddleware.run(saga));
 
 
-export const ReduxProviderComponent: FC = ({ children }) => {
+export const ReduxProviderComponent = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <Provider store={appStore}>
         {children}
