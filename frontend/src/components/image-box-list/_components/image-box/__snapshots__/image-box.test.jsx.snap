@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageBox render default 1`] = `
+<button
+  className="root"
+  onClick={[Function]}
+  type="button"
+>
+  <div
+    className="wrapper"
+  >
+    <Memo(LazyImageComponent)
+      alt="testTitle"
+      remoteControl={false}
+      src="testUrl"
+    />
+  </div>
+  <p
+    className="title"
+  >
+    testTitle
+  </p>
+</button>
+`;
+
+exports[`ImageBox render with all props 1`] = `
+<button
+  className="root"
+  onClick={[Function]}
+  type="button"
+>
+  <div
+    className="wrapper"
+  >
+    <Memo(LazyImageComponent)
+      alt="testTitle"
+      hideSkeleton={true}
+      onLoad={[Function]}
+      remoteControl={true}
+      src="testUrl"
+    />
+  </div>
+  <p
+    className="title"
+  >
+    testTitle
+  </p>
+</button>
+`;
