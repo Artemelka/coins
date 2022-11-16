@@ -1,9 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { COINS_REDUCER_CONFIG } from '@/pages';
-import { routerReducer } from '../router';
-import { APP_STORE_KEYS } from '../constants';
+import { ROUTER_REDUCER_CONFIG } from '../router';
 
 export const appReducer =  combineReducers({
-  [APP_STORE_KEYS.ROUTER]: routerReducer,
+  [ROUTER_REDUCER_CONFIG.name]: ROUTER_REDUCER_CONFIG.reducer,
   [COINS_REDUCER_CONFIG.name]: COINS_REDUCER_CONFIG.reducer,
 });
