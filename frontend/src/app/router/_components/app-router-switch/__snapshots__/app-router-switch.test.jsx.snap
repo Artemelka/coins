@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppRouterSwitchComponent render empty 1`] = `<Switch />`;
+
+exports[`AppRouterSwitchComponent render only children 1`] = `
+<Switch>
+  <div>
+    mock children
+  </div>
+</Switch>
+`;
+
+exports[`AppRouterSwitchComponent render with notFoundPageComponent & redirect 1`] = `
+<Switch>
+  <div>
+    mock children
+  </div>
+  <Redirect
+    to="test"
+  />
+  <Route
+    component={[Function]}
+  />
+</Switch>
+`;
+
+exports[`AppRouterSwitchComponent render with notFoundPageComponent 1`] = `
+<Switch>
+  <div>
+    mock children
+  </div>
+  <Route
+    component={[Function]}
+  />
+</Switch>
+`;
+
+exports[`AppRouterSwitchComponent render with redirect 1`] = `
+<Switch>
+  <div>
+    mock children
+  </div>
+  <Redirect
+    to="test"
+  />
+</Switch>
+`;

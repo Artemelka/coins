@@ -13,12 +13,12 @@ type IStateProps = {
   regions: Array<Region>;
 };
 
-type IProps = IStateProps & {
+type RegionsPageProps = IStateProps & {
   fetchRegions: () => void;
   push: (url: string) => void;
 };
 
-class RegionsHomePageComponent extends Component<IProps, unknown> {
+class RegionsPageComponent extends Component<RegionsPageProps, unknown> {
   componentDidMount() {
     this.props.fetchRegions();
   }
@@ -50,4 +50,4 @@ const reduxActions = {
   push,
 };
 
-export const RegionsHomePage = connect(mapStateToProps, reduxActions)(RegionsHomePageComponent);
+export const RegionsPage = connect(mapStateToProps, reduxActions)(RegionsPageComponent);

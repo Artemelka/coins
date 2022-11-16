@@ -2,12 +2,12 @@ import React, { FC, memo, useCallback, useState } from 'react';
 import { ImageBox, ImageBoxClickEvent } from './_components';
 import styles from './image-box-list.module.scss'
 
-type IProps = {
+type ImageBoxListProps = {
     items: Array<{ id: number; imageUri: string; name: string }>;
     onItemClick: (event: ImageBoxClickEvent) => void;
 };
 
-const ImageBoxListComponent: FC<IProps> = ({ items, onItemClick }) => {
+const ImageBoxListComponent: FC<ImageBoxListProps> = ({ items, onItemClick }) => {
     const [imageCount, setImageCount] = useState(0);
 
     const handleLoad = useCallback(() => {

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppLayoutComponent render 1`] = `
+<div
+  className="root"
+>
+  <header
+    className="header"
+  >
+    <Memo(ThemeSwitcherComponent) />
+  </header>
+  <main
+    className="main"
+  >
+    <Memo(AppRouterSwitchComponent)
+      pathToRedirect="/coins"
+    >
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "compare": null,
+            "type": [Function],
+          }
+        }
+        key="/coins"
+        path="/coins"
+      />
+    </Memo(AppRouterSwitchComponent)>
+  </main>
+</div>
+`;

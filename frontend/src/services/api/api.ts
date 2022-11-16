@@ -1,8 +1,7 @@
-import { getQueryString } from './utils/get-query-string';
-import { BASE_PARAMS, METHOD } from './constants';
+import { appFetch, getQueryString } from './utils';
+import { METHOD } from './constants';
 import {
-    RequestGetParams,
-    RequestPostParams,
+    AppRequestParams,
     ApiResponse,
 } from './types';
 
@@ -15,41 +14,23 @@ export class Api {
 
     constructor(config: Config) {
         this.request = async function <D>(suffix: string, params: RequestParams): Promise<ApiResponse<D>> {
-            try {
-                const response = await fetch(`${config.url}/${suffix}`, {
-                    ...params,
-                    ...BASE_PARAMS,
-                });
+            const fullUrl = `${config.url}/${suffix}`;
 
-                const data = await response.json();
-
-                return Promise.resolve({
-                    isError: !data,
-                    errorMessage: !data ? 'empty data': '',
-                    data: data || {},
-                });
-            } catch (error: any) {
-                return Promise.reject({
-                    isError: true,
-                    errorMessage: error.message,
-                    data: {},
-                });
-            }
+            return appFetch<D>(fullUrl, params);
         };
     }
 
-    public get = async <D>(url: string, params?: RequestGetParams): Promise<ApiResponse<D>> => {
-        const { queryParams, ...restParams } = params || {};
+    public get = async <D>(url: string, queryParams?: Record<string, string>, params?: AppRequestParams): Promise<ApiResponse<D>> => {
         const queryString = queryParams ? getQueryString(queryParams) : '';
         const fullUrl = `${url}${queryString}`;
 
         return await this.request(fullUrl, {
-            ...restParams,
+            ...params,
             method: METHOD.GET,
         });
     }
 
-    public post = async <D>(url: string, { body, ...params }: RequestPostParams): Promise<ApiResponse<D>> => {
+    public post = async <D>(url: string, body: Record<string, any>, params?: AppRequestParams): Promise<ApiResponse<D>> => {
         return await this.request(url, {
             ...params,
             method: METHOD.POST,

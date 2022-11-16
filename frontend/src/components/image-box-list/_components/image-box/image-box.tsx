@@ -3,7 +3,7 @@ import { LazyImage } from '@/components';
 import { ImageBoxClickEvent } from './types';
 import styles from './image-box.module.scss';
 
-type IProps = {
+type ImageBoxProps = {
     id: number;
     imageUri: string;
     onClick: (clickEvent: ImageBoxClickEvent) => void;
@@ -12,7 +12,7 @@ type IProps = {
     hideSkeleton?: boolean;
 };
 
-const ImageBoxComponent: FC<IProps> = ({
+const ImageBoxComponent: FC<ImageBoxProps> = ({
     id,
     imageUri,
     onClick,

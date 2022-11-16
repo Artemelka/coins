@@ -15,9 +15,9 @@ const reduxActions = {
     fetchCountries: fetchCountriesSagaAction,
 };
 
-type IProps = ReturnType<typeof mapStateToProps> & ResolveThunks<typeof reduxActions>;
+type CountriesPageProps = ReturnType<typeof mapStateToProps> & ResolveThunks<typeof reduxActions>;
 
-class CountriesPageComponent extends Component<IProps, unknown> {
+class CountriesPageComponent extends Component<CountriesPageProps, unknown> {
     componentDidMount() {
         this.props.fetchCountries();
     }

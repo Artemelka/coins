@@ -4,9 +4,9 @@ import { AppRouterSwitch, Route } from '@/app/router';
 import { COINS_CHILDREN_PAGE_ROUTE_CONFIGS } from './children';
 import { COINS_CHILDREN_PATH } from './constants';
 
-type IProps = RouteComponentProps;
+type CoinsPageProps = RouteComponentProps;
 
-const CoinsPageComponent: FC<IProps> = ({
+const CoinsPageComponent: FC<CoinsPageProps> = ({
   location,
   history,
 }) => {

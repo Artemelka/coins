@@ -1,4 +1,5 @@
-import React, {memo, useCallback, useEffect, useState} from 'react';
+import React, { FC, memo, useCallback, useEffect, useState} from 'react';
+import { noop } from '@/utils';
 import styles from './lazy-image.module.scss';
 
 type LazyImageProps = {
@@ -9,13 +10,13 @@ type LazyImageProps = {
   src: string;
 };
 
-export const LazyImageComponent = ({
+export const LazyImageComponent: FC<LazyImageProps> = ({
   alt,
   hideSkeleton,
-  onLoad = () => false,
+  onLoad = noop,
   remoteControl,
   src,
-}: LazyImageProps) => {
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isShowSkeleton, setIsShowSkeleton] = useState(true);
 

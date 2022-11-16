@@ -2,7 +2,7 @@ import React, { FC, memo, useState } from 'react';
 import { appThemeServices } from '@/services/app-theme';
 import styles from './theme-switcher.module.scss';
 
-const ThemeSwitcherComponent: FC<unknown> = (props) => {
+const ThemeSwitcherComponent: FC<unknown> = () => {
     const [checked, setChecked] = useState(appThemeServices.get() === 'dark');
 
     const handleChange = () => {
