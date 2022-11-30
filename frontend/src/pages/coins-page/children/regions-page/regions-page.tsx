@@ -6,11 +6,10 @@ import { ImageBoxList, ImageBoxClickEvent, Page } from '@/components';
 import {
   regionsItemsSelector,
   fetchRegionsSagaAction,
-  Region,
 } from '../../redux';
 
 type IStateProps = {
-  regions: Array<Region>;
+  regions: AppStore['coins']['regions'];
 };
 
 type RegionsPageProps = IStateProps & {

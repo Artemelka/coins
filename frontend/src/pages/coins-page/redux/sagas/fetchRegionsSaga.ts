@@ -1,11 +1,10 @@
 import { call, put, take, fork } from 'redux-saga/effects';
-import { ApiRequest, ApiResponse } from '@/services/api';
+import { Api, RegionsGetResponse } from '@/api';
 import { REGIONS_FETCH_SAGA, setRegionsLoadingSuccess } from '../actions';
-import { Region } from '../types';
 
 function* fetchRegionsSagaWorker() {
     try {
-        const response: ApiResponse<{ regions: Array<Region>}> = yield call(ApiRequest.get, 'regions.json');
+        const response: RegionsGetResponse = yield call(Api.Regions.get);
 
         if (response.isError) {
             console.log('=== ERROR in fetchRegionsSagaWorker ===', response.errorMessage);

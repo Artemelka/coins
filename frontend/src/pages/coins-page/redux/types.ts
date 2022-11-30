@@ -1,20 +1,5 @@
 import { COINS_REDUCER_NAME } from './constants';
-
-export type Region = {
-    active: boolean;
-    id: number;
-    imageUri: string;
-    name: string;
-};
-
-export type Country = {
-    active: boolean;
-    name: string;
-    description: string;
-    id: number;
-    imageUri: string;
-    regionId: number;
-};
+import type { Region, Country } from '@/api';
 
 export type CoinsState = {
     isLoading: boolean;
@@ -22,4 +7,4 @@ export type CoinsState = {
     countries: Array<Country>;
 }
 
-export type CoinsStore = { [COINS_REDUCER_NAME]: CoinsState};
+export type CoinsStore = { [COINS_REDUCER_NAME]: CoinsState };

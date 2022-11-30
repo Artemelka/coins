@@ -15,4 +15,4 @@ export {
     countriesSelector,
     activeRegionCountrySelector,
 } from './selectors';
-export type { Region, CoinsStore, Country } from './types';
+export type { CoinsStore } from './types';

@@ -1,1 +1,1 @@
-export const COINS_REDUCER_NAME = 'regions';
+export const COINS_REDUCER_NAME = 'coins';

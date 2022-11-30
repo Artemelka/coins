@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { BaseAction } from '@/app';
-import { Region, Country } from './types';
+import type { Region, Country } from '@/api';
 
 export const REGIONS_LOADING_START = 'REGIONS_LOADING_START';
 type RegionsLoadingStart = Action<typeof REGIONS_LOADING_START>;

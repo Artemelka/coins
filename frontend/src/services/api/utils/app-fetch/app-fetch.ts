@@ -1,9 +1,9 @@
 import { BASE_PARAMS, METHOD } from '../../constants';
-import type { ApiResponse } from '../../types';
+import type { ApiServiceResponse } from '../../types';
 
 type RequestParams = RequestInit & { method: keyof typeof METHOD };
 
-export const appFetch = async <R>(url: string, params: RequestParams): Promise<ApiResponse<R>> => {
+export const appFetch = async <R>(url: string, params: RequestParams): Promise<ApiServiceResponse<R>> => {
     try {
         const response = await fetch(url, {
             ...params,

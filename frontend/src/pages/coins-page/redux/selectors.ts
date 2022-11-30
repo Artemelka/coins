@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { AppStore } from '@/app';
 import { locationQuerySelector } from '@/app/router';
 import { COINS_REDUCER_NAME } from './constants';
-import { CoinsState, Region, Country } from './types';
+import { CoinsState } from './types';
 
 const coinsSelector = (state: AppStore): CoinsState => state[COINS_REDUCER_NAME];
 
@@ -11,12 +11,12 @@ export const regionsIsLoadingSelector = createSelector<AppStore, CoinsState, Boo
     ({ isLoading }) => isLoading
 );
 
-export const regionsItemsSelector = createSelector<AppStore, CoinsState, Array<Region>>(
+export const regionsItemsSelector = createSelector<AppStore, CoinsState, AppStore['coins']['regions']>(
     [coinsSelector],
     ({ regions }) => regions
 );
 
-export const countriesSelector = createSelector<AppStore, CoinsState, Array<Country>>(
+export const countriesSelector = createSelector<AppStore, CoinsState, AppStore['coins']['countries']>(
     [coinsSelector],
     ({ countries }) => countries
 );

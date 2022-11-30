@@ -17,7 +17,7 @@ const ImageBoxListComponent: FC<ImageBoxListProps> = ({ items, onItemClick }) =>
     return (
         <ul className={styles.root}>
             {items.map(({ id, imageUri, name }) => (
-                <li key={id} className={styles.item}>
+                <li key={imageUri} className={styles.item}>
                     <ImageBox
                         id={id}
                         imageUri={imageUri}
